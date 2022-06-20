@@ -84,7 +84,7 @@ export const LinksQuery = extendType({
         // if the initial request returns links
         if (queryResults.length > 0) {
           // get last element in previous result set
-          const lastLinkInResults = queryResults[queryResults.length - 1];
+          const lastLinkInResults = queryResults[queryResults.length - 2];
           // cursor we'll return in subsequent requests
           const myCursor = lastLinkInResults.id;
 
@@ -98,6 +98,7 @@ export const LinksQuery = extendType({
               createdAt: "asc",
             },
           });
+
           // return response
           const result = {
             pageInfo: {

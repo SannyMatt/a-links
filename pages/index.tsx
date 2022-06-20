@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { gql, useQuery, useMutation } from "@apollo/client";
 import Link from "next/link";
-import { AwesomeLink } from "components/AwesomeLink";
+import { AwesomeLink } from "../components/AwesomeLink";
 
 const AllLinksQuery = gql`
   query allLinksQuery($first: Int, $after: String) {
@@ -13,7 +13,6 @@ const AllLinksQuery = gql`
       edges {
         cursor
         node {
-          index
           imageUrl
           url
           title
@@ -33,6 +32,7 @@ function Home() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Oh no... {error.message}</p>;
+  console.log(data.links, "data.links");
 
   const { endCursor, hasNextPage } = data.links.pageInfo;
 
@@ -46,6 +46,7 @@ function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {data?.links.edges.map(({ node }) => (
             <AwesomeLink
+              key={node.id}
               title={node.title}
               category={node.category}
               url={node.url}
