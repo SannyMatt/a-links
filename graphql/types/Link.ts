@@ -84,19 +84,20 @@ export const LinksQuery = extendType({
         // if the initial request returns links
         if (queryResults.length > 0) {
           // get last element in previous result set
-          const lastLinkInResults = queryResults[queryResults.length - 2];
+          const lastLinkInResults = queryResults[queryResults.length - 1];
           // cursor we'll return in subsequent requests
           const myCursor = lastLinkInResults.id;
 
           // query after the cursor to check if we have nextPage
           const secondQueryResults = await ctx.prisma.link.findMany({
             take: args.first,
+
             cursor: {
               id: myCursor,
             },
-            orderBy: {
-              createdAt: "asc",
-            },
+            // orderBy: {
+            //   createdAt: "asc",
+            // },
           });
 
           // return response
