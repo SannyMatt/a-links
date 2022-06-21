@@ -4,6 +4,11 @@ import Layout from "../components/Layout";
 import { ApolloProvider } from "@apollo/client";
 import apolloClient from "../lib/apollo";
 function MyApp({ Component, pageProps }) {
+  console.log(
+    `${process.env.AUTH0_BASE_URL}/api/graphql`,
+    "`${process.env.AUTH0_BASE_URL}/api/graphql`"
+  );
+
   return (
     <UserProvider>
       <ApolloProvider client={apolloClient}>

@@ -32,7 +32,6 @@ function Home() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Oh no... {error.message}</p>;
-  console.log(data.links, "data.links");
 
   const { endCursor, hasNextPage } = data.links.pageInfo;
 
